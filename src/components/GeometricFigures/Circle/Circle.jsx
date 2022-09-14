@@ -26,7 +26,6 @@ const Circle = () => {
     if (exercise.dimension === "") {
       setError("Please choose the dimension you want to calculate");
     }
-    e.preventDefault();
     if (exercise.unit === "") {
       setError("Please select the unit for calculation");
     } else {
