@@ -10,7 +10,7 @@ const Rectangle = () => {
   const [exercise, setExercise] = useState(data);
   const [answer, setAnswer] = useState(0);
   const [error, setError] = useState("");
-  const [unit, setUnit] = useState("");
+ 
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -29,15 +29,14 @@ const Rectangle = () => {
     if (exercise.unit === "") {
       setError("Please select the unit for calculation");
     } else {
-      console.log(exercise);
       if (exercise.dimension === "Perimeter") {
         setAnswer((Number(exercise.length) + Number(exercise.width)) * 2);
       } else if (exercise.dimension === "Area") {
         setAnswer(
-          Number(exercise.length) * Number(exercise.width),
-          exercise.unit
+          Number(exercise.length) * Number(exercise.width)
+       
         );
-        setUnit(exercise.unit);
+     
       }
     }
     e.target.reset();
@@ -46,7 +45,7 @@ const Rectangle = () => {
   return (
     <div className="app__figure_container">
       <div className="app__figure__header">
-        <h3>Find the Area and Perimeter of A Rectangle</h3>
+        <h3>Find the Area and Perimeter of Rectangles</h3>
       </div>
       <div className="app__form">
         <form onSubmit={submitHandler}>
@@ -117,17 +116,17 @@ const Rectangle = () => {
         <div className="app__result_container">
           {exercise.dimension === "Area" ? (
             <span className="geometric_result">
-              Answer in {exercise.unit} : {answer} {exercise.unit}
+             <strong> Answer in</strong> {exercise.unit} : {answer} {exercise.unit}
               <sup>2</sup>
             </span>
           ) : (
             <span className="geometric_result">
-              Answer in {exercise.unit}: {answer} {exercise.unit}
+             <strong> Answer in</strong> {exercise.unit}: {answer} {exercise.unit}
             </span>
           )}
           {exercise.dimension === "Area" ? (
             <span className="geometric_result">
-              Answer in{" "}
+              <strong> Answer in</strong>
               {exercise.unit === "M" ? "CM" || exercise.unit === "CM" : "M"}:{" "}
               {exercise.unit === "M"
                 ? answer * 100 + "CM" || exercise.unit === "CM"
@@ -136,7 +135,7 @@ const Rectangle = () => {
             </span>
           ) : (
             <span className="geometric_result">
-              Answer in{" "}
+               <strong> Answer in </strong>
               {exercise.unit === "M" ? "CM" || exercise.unit === "CM" : "M"}:{" "}
               {exercise.unit === "M"
                 ? answer * 100 + "CM" || exercise.unit === "CM"
