@@ -13,8 +13,9 @@ const Header = () => {
     <div className='geometry-container'>
         <div className="geometry-main">
             <div className="geometry-header">
-                <h3>Geometry Application, Find areas and Perimeters</h3>
-                <span>Your Number one Learning Aid <br /> For geometric figures like <br /> Rectangles, Squares, Circles, and Triangles.</span>
+                <h3>Geometry Application</h3>
+                <span>Your Number one Learning Aid <br /> For Geometric Figures.
+                <br /> Finding Areas and Perimeters</span>
             </div>
 
 <div className="geometric-figures">
