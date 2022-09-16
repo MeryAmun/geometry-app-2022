@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import Loader from "../Loader";
 //import "./rectangle.css";
 const data = {
   length: 0,
   unit: "",
   dimension: "",
 };
-const Square = () => {
+const Square = ({ square }) => {
   const [exercise, setExercise] = useState(data);
   const [answer, setAnswer] = useState(0);
   const [error, setError] = useState("");
-  
+
+  if (square.length === 0) {
+    return <Loader />;
+  }
+  const { figureName, units, availableDimensions, dimensionsToCalculate } =
+    square;
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -30,11 +36,7 @@ const Square = () => {
       if (exercise.dimension === "Perimeter") {
         setAnswer(Number(exercise.length) * 4);
       } else if (exercise.dimension === "Area") {
-        setAnswer(
-         Math.pow( Number(exercise.length),2)
-      
-        );
-      
+        setAnswer(Math.pow(Number(exercise.length), 2));
       }
     }
     e.target.reset();
@@ -43,7 +45,35 @@ const Square = () => {
   return (
     <div className="app__figure_container">
       <div className="app__figure__header">
-        <h3>Find the Area and Perimeter of Squares</h3>
+        <div className="figures__and_units">
+          <span className="figure_name">
+            Name of Figure: <strong>{figureName}</strong>
+          </span>
+          <div className="figure_dimensions">
+            <span> Dimensions To Calculate:</span>
+            {dimensionsToCalculate.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+          <div className="figure_dimensions">
+            <span>Available Dimensions:</span>
+            {availableDimensions.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+          <div className="figure_dimensions">
+            <span>Available Units:</span>
+            {units.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="app__form">
         <form onSubmit={submitHandler}>
@@ -105,12 +135,14 @@ const Square = () => {
         <div className="app__result_container">
           {exercise.dimension === "Area" ? (
             <span className="geometric_result">
-              <strong> Answer in</strong>{exercise.unit} : {answer} {exercise.unit}
+              <strong> Answer in</strong>
+              {exercise.unit} : {answer} {exercise.unit}
               <sup>2</sup>
             </span>
           ) : (
             <span className="geometric_result">
-              <strong> Answer in</strong>{exercise.unit}: {answer} {exercise.unit}
+              <strong> Answer in</strong>
+              {exercise.unit}: {answer} {exercise.unit}
             </span>
           )}
           {exercise.dimension === "Area" ? (
@@ -124,8 +156,10 @@ const Square = () => {
             </span>
           ) : (
             <span className="geometric_result">
-               <strong> Answer in </strong>
-              {exercise.unit === "M" ? "CM" || exercise.unit === "CM" : "M"}:{" "}
+              <strong> Answer in </strong>
+              {exercise.unit === "M"
+                ? "CM" || exercise.unit === "CM"
+                : "M"}:{" "}
               {exercise.unit === "M"
                 ? answer * 100 + "CM" || exercise.unit === "CM"
                 : (answer * 0.01).toFixed(2) + "M"}{" "}

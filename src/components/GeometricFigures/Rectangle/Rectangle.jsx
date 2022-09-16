@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Loader from "../Loader";
 import "./rectangle.css";
 const data = {
   length: 0,
@@ -6,11 +7,16 @@ const data = {
   unit: "",
   dimension: "",
 };
-const Rectangle = () => {
+const Rectangle = ({ rectangle }) => {
   const [exercise, setExercise] = useState(data);
   const [answer, setAnswer] = useState(0);
   const [error, setError] = useState("");
- 
+
+  if (rectangle.length === 0) {
+    return <Loader />;
+  }
+  const { figureName, units, availableDimensions, dimensionsToCalculate } =
+    rectangle;
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -31,11 +37,7 @@ const Rectangle = () => {
       if (exercise.dimension === "Perimeter") {
         setAnswer((Number(exercise.length) + Number(exercise.width)) * 2);
       } else if (exercise.dimension === "Area") {
-        setAnswer(
-          Number(exercise.length) * Number(exercise.width)
-       
-        );
-     
+        setAnswer(Number(exercise.length) * Number(exercise.width));
       }
     }
     e.target.reset();
@@ -44,8 +46,37 @@ const Rectangle = () => {
   return (
     <div className="app__figure_container">
       <div className="app__figure__header">
-        <h3>Find the Area and Perimeter of Rectangles</h3>
+        <div className="figures__and_units">
+          <span className="figure_name">
+            Name of Figure: <strong>{figureName}</strong>
+          </span>
+          <div className="figure_dimensions">
+            <span> Dimensions To Calculate:</span>
+            {dimensionsToCalculate.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+          <div className="figure_dimensions">
+            <span>Available Dimensions:</span>
+            {availableDimensions.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+          <div className="figure_dimensions">
+            <span>Available Units:</span>
+            {units.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
+
       <div className="app__form">
         <form onSubmit={submitHandler}>
           <div className="form-group ">
@@ -115,18 +146,22 @@ const Rectangle = () => {
         <div className="app__result_container">
           {exercise.dimension === "Area" ? (
             <span className="geometric_result">
-             <strong> Answer in</strong> {exercise.unit} : {answer} {exercise.unit}
+              <strong> Answer in</strong> {exercise.unit} : {answer}{" "}
+              {exercise.unit}
               <sup>2</sup>
             </span>
           ) : (
             <span className="geometric_result">
-             <strong> Answer in</strong> {exercise.unit}: {answer} {exercise.unit}
+              <strong> Answer in</strong> {exercise.unit}: {answer}{" "}
+              {exercise.unit}
             </span>
           )}
           {exercise.dimension === "Area" ? (
             <span className="geometric_result">
               <strong> Answer in</strong>
-              {exercise.unit === "M" ? "CM" || exercise.unit === "CM" : "M"}:{" "}
+              {exercise.unit === "M"
+                ? "CM" || exercise.unit === "CM"
+                : "M"}:{" "}
               {exercise.unit === "M"
                 ? answer * 100 + "CM" || exercise.unit === "CM"
                 : (answer * 0.01).toFixed(3) + "M"}
@@ -134,8 +169,10 @@ const Rectangle = () => {
             </span>
           ) : (
             <span className="geometric_result">
-               <strong> Answer in </strong>
-              {exercise.unit === "M" ? "CM" || exercise.unit === "CM" : "M"}:{" "}
+              <strong> Answer in </strong>
+              {exercise.unit === "M"
+                ? "CM" || exercise.unit === "CM"
+                : "M"}:{" "}
               {exercise.unit === "M"
                 ? answer * 100 + "CM" || exercise.unit === "CM"
                 : (answer * 0.01).toFixed(2) + "M"}{" "}

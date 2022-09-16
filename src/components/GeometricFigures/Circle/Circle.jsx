@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import Loader from "../Loader";
 //import "./rectangle.css";
 const data = {
-  pie:Math.floor(Math.PI),
+  pie: Math.floor(Math.PI),
   radius: 0,
   unit: "",
   dimension: "",
 };
-const Circle = () => {
+const Circle = ({ circle }) => {
   const [exercise, setExercise] = useState(data);
   const [answer, setAnswer] = useState(0);
   const [error, setError] = useState("");
+  const notify = useRef();
 
+  if (circle.length === 0) {
+    return <Loader />;
+  }
+  const { figureName, units, availableDimensions, dimensionsToCalculate } =
+    circle;
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -19,7 +26,6 @@ const Circle = () => {
       return { ...prev, [name]: value };
     });
   };
- 
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -29,15 +35,10 @@ const Circle = () => {
     if (exercise.unit === "") {
       setError("Please select the unit for calculation");
     } else {
-      console.log(exercise);
       if (exercise.dimension === "Circumference") {
-        setAnswer((2 * exercise.pie ) * Number(exercise.radius));
+        setAnswer(2 * exercise.pie * Number(exercise.radius));
       } else if (exercise.dimension === "Area") {
-        setAnswer(
-         ( exercise.pie * ( Math.pow(Number(exercise.radius),2)))
-        
-        );
-      
+        setAnswer(exercise.pie * Math.pow(Number(exercise.radius), 2));
       }
     }
     e.target.reset();
@@ -46,7 +47,41 @@ const Circle = () => {
   return (
     <div className="app__figure_container">
       <div className="app__figure__header">
-        <h3>Find the Area and Circumference of  Circles</h3>
+        <div className="figures__and_units">
+          <span className="figure_name">
+            Name of Figure: <strong>{figureName}</strong>
+          </span>
+          <div className="figure_dimensions">
+            <span> Dimensions To Calculate:</span>
+            {dimensionsToCalculate.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+          <div className="figure_dimensions">
+            <span>Available Dimensions:</span>
+            {availableDimensions.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+          <div className="figure_dimensions">
+            <span>Available Units:</span>
+            {units.map((val) => (
+              <span className="figure_dimension" key={val}>
+                <strong>{val}</strong>
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="notification" ref={notify}>
+          <span className="notifyText">
+            If all you have is <br /> the diameter, divide it by two to get the
+            radius
+          </span>
+        </div>
       </div>
       <div className="app__form">
         <form onSubmit={submitHandler}>
@@ -108,18 +143,22 @@ const Circle = () => {
         <div className="app__result_container">
           {exercise.dimension === "Area" ? (
             <span className="geometric_result">
-             <strong> Answer in</strong> {exercise.unit} : {answer} {exercise.unit}
+              <strong> Answer in</strong> {exercise.unit} : {answer}{" "}
+              {exercise.unit}
               <sup>2</sup>
             </span>
           ) : (
             <span className="geometric_result">
-               <strong> Answer in</strong> {exercise.unit}: {answer} {exercise.unit}
+              <strong> Answer in</strong> {exercise.unit}: {answer}{" "}
+              {exercise.unit}
             </span>
           )}
           {exercise.dimension === "Area" ? (
             <span className="geometric_result">
               <strong> Answer in</strong>
-              {exercise.unit === "M" ? "CM" || exercise.unit === "CM" : "M"}:{" "}
+              {exercise.unit === "M"
+                ? "CM" || exercise.unit === "CM"
+                : "M"}:{" "}
               {exercise.unit === "M"
                 ? answer * 100 + "CM" || exercise.unit === "CM"
                 : (answer * 0.01).toFixed(3) + "M"}
@@ -127,8 +166,10 @@ const Circle = () => {
             </span>
           ) : (
             <span className="geometric_result">
-             <strong> Answer in </strong>
-              {exercise.unit === "M" ? "CM" || exercise.unit === "CM" : "M"}:{" "}
+              <strong> Answer in </strong>
+              {exercise.unit === "M"
+                ? "CM" || exercise.unit === "CM"
+                : "M"}:{" "}
               {exercise.unit === "M"
                 ? answer * 100 + "CM" || exercise.unit === "CM"
                 : (answer * 0.01).toFixed(2) + "M"}{" "}
