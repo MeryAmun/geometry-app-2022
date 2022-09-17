@@ -1,3 +1,48 @@
+
+
+# About Solution
+This solution  was bootstrapped with [Create React App].
+
+# How to run solution
+Copy project url in the github repository and run git clone, or download zip and extract files
+
+# Get project dependecies 
+
+run npm install  in the root directory of this project inside you IDE
+
+# Start project
+run npm start to start procject
+
+
+# About server
+Server runs on Node js and Express, with Mongo Db Atlas as database
+
+# Get to server
+go to this repositotry https://github.com/MeryAmun/geometry-app-server.git
+
+# Get files
+repeat the same procedures  above to get files
+
+# Start server
+inside root directory run 
+npm run dev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

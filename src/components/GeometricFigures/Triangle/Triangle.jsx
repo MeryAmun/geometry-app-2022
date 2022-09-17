@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { GeometryContext } from "../../GeometeryContext/GeometryContextProvider";
 import Loader from "../Loader";
 //import "./Triangle.css";
 const data = {
@@ -9,16 +10,20 @@ const data = {
   unit: "",
   dimension: "",
 };
-const Triangle = ({triangle}) => {
+const Triangle = () => {
   const [exercise, setExercise] = useState(data);
   const [answer, setAnswer] = useState(0);
   const [error, setError] = useState("");
+  const figures = useContext(GeometryContext)
+  const triangle = figures.filter((item) => item.figureName === "Triangle");
  
-  if (triangle.length === 0) {
+ 
+  if (triangle[0].length === 0) {
     return <Loader />;
   }
   const { figureName, units, availableDimensions, dimensionsToCalculate } =
-    triangle;
+    triangle[0];
+   
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -53,10 +58,10 @@ const Triangle = ({triangle}) => {
     <div className="app__figure_container">
       <div className="app__figure__header">
         <div className="figures__and_units">
-          <span className="figure_name">
-            Name of Figure: <strong>{figureName}</strong>
-          </span>
           <div className="figure_dimensions">
+          <span className="figure_name">
+            Name of Geometric Figure: <strong>{figureName}</strong>
+          </span>
             <span> Dimensions To Calculate:</span>
             {dimensionsToCalculate.map((val) => (
               <span className="figure_dimension" key={val}>

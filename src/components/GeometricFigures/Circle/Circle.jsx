@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { GeometryContext } from "../../GeometeryContext/GeometryContextProvider";
 import Loader from "../Loader";
 //import "./rectangle.css";
 const data = {
@@ -7,17 +8,20 @@ const data = {
   unit: "",
   dimension: "",
 };
-const Circle = ({ circle }) => {
+const Circle = () => {
   const [exercise, setExercise] = useState(data);
   const [answer, setAnswer] = useState(0);
   const [error, setError] = useState("");
   const notify = useRef();
+  const figures = useContext(GeometryContext);
+  const circle = figures.filter((item) => item.figureName === "Circle");
 
-  if (circle.length === 0) {
+
+  if (circle[0].length === 0) {
     return <Loader />;
   }
   const { figureName, units, availableDimensions, dimensionsToCalculate } =
-    circle;
+    circle[0];
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -48,10 +52,10 @@ const Circle = ({ circle }) => {
     <div className="app__figure_container">
       <div className="app__figure__header">
         <div className="figures__and_units">
-          <span className="figure_name">
-            Name of Figure: <strong>{figureName}</strong>
-          </span>
           <div className="figure_dimensions">
+          <span className="figure_name">
+            Name of Geometric Figure: <strong>{figureName}</strong>
+          </span>
             <span> Dimensions To Calculate:</span>
             {dimensionsToCalculate.map((val) => (
               <span className="figure_dimension" key={val}>

@@ -28,54 +28,49 @@ const Header = () => {
     return <Loader />;
   }
 
-  const rectangle = figure.filter((item) => item.figureName === "Rectangle");
-  const triangle = figure.filter((item) => item.figureName === "Triangle");
-  const square = figure.filter((item) => item.figureName === "Square");
-  const circle = figure.filter((item) => item.figureName === "Circle");
-
 
   return (
     <div className="geometry-container">
       <div className="geometry-main">
         <div className="geometry-header">
           <h3>Geometry Application</h3>
-          <span>
-            Your Number one Learning Aid <br /> For Geometric Figures.
-            <br /> Finding Areas and Perimeters
+          <span className="header-subtitle">
+            Your Number one Learning Aid <br /> For calculating dimensions of  Geometric Figures.
+            <br /> 
           </span>
         </div>
 
         <div className="geometric-figures">
           <button className={
-            activeTab === 'rectangle' ? "liveTab" : "rec-btn"
+            activeTab === 'rectangle' ? "liveTab" : "btn"
           } onClick={() => setActiveTab("rectangle")}>
             Rectangles
           </button>
           <button className={
-            activeTab === 'triangle' ? 'liveTab' : "tri-btn"
+            activeTab === 'triangle' ? 'liveTab' : "btn"
           } onClick={() => setActiveTab("triangle")}>
             Triangles
           </button>
           <button className={
-            activeTab === 'circle' ? 'liveTab ': "circ-btn"
+            activeTab === 'circle' ? 'liveTab ': "btn"
           } onClick={() => setActiveTab("circle")}>
             Circles
           </button>
           <button className={
-            activeTab === 'square' ? 'liveTab' : "squ-btn"
+            activeTab === 'square' ? 'liveTab' : "btn"
           } onClick={() => setActiveTab("square")}>
             Squares
           </button>
         </div>
       </div>
       {activeTab === "rectangle" ? (
-        <Rectangle rectangle={rectangle[0]} />
+        <Rectangle />
       ) : activeTab === "triangle" ? (
-        <Triangle triangle={triangle[0]} />
+        <Triangle />
       ) : activeTab === "square" ? (
-        <Square square={square[0]} />
+        <Square/>
       ) : (
-        <Circle circle={circle[0]} />
+        <Circle/>
       )}
     </div>
   );
