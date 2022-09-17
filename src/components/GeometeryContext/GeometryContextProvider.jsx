@@ -1,7 +1,6 @@
 import React, { createContext, useState,useEffect } from 'react';
 //import App from '../../App';
 import { baseUrl } from '../api/geometricFiguresApi';
-import Loader from '../GeometricFigures/Loader';
 
 
 export const GeometryContext = createContext()
@@ -26,9 +25,7 @@ const GeometryContextProvider = ({children}) => {
         getGeoFigures();
       }, []);
     
-    //   if (figure.length === 0) {
-    //     return <Loader />;
-    //   }
+    
     
       return (
           <GeometryContext.Provider value={geometricFigures}>

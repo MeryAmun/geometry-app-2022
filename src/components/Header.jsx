@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <div className="geometry-container">
       <div className="geometry-main">
-        <div className="geometry-header">
+        <div className="geometry-header" data-test='header'>
           <h3>Geometry Application</h3>
           <span className="header-subtitle">
             Your Number one Learning Aid <br /> For calculating dimensions of  Geometric Figures.
@@ -40,7 +40,7 @@ const Header = () => {
           </span>
         </div>
 
-        <div className="geometric-figures">
+        <div className="geometric-figures" data-test="tab-container">
           <button className={
             activeTab === 'rectangle' ? "liveTab" : "btn"
           } onClick={() => setActiveTab("rectangle")}>

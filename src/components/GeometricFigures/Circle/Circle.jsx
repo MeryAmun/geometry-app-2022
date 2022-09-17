@@ -1,7 +1,7 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { GeometryContext } from "../../GeometeryContext/GeometryContextProvider";
 import Loader from "../Loader";
-//import "./rectangle.css";
+
 const data = {
   pie: Math.floor(Math.PI),
   radius: 0,
@@ -12,7 +12,7 @@ const Circle = () => {
   const [exercise, setExercise] = useState(data);
   const [answer, setAnswer] = useState(0);
   const [error, setError] = useState("");
-  const notify = useRef();
+  
   const figures = useContext(GeometryContext);
   const circle = figures.filter((item) => item.figureName === "Circle");
 
@@ -80,7 +80,7 @@ const Circle = () => {
             ))}
           </div>
         </div>
-        <div className="notification" ref={notify}>
+        <div className="notification">
           <span className="notifyText">
             If all you have is <br /> the diameter, divide it by two to get the
             radius
