@@ -33,8 +33,8 @@ const Header = () => {
     <div className="geometry-container">
       <div className="geometry-main">
         <div className="geometry-header" data-test='header'>
-          <h3>Geometry Application</h3>
-          <span className="header-subtitle">
+          <h3 data-test='header-main'>Geometry Application</h3>
+          <span className="header-subtitle" data-test='header-sub'>
             Your Number one Learning Aid <br /> For calculating dimensions of  Geometric Figures.
             <br /> 
           </span>

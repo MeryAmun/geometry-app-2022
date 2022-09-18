@@ -17,6 +17,7 @@ const GeometryContextProvider = ({children}) => {
               "Content-Types": "application/json",
             },
           }).then((response) => {
+          
             return response.json();
           });
           setGeometricFigures(response);
