@@ -1,3 +1,3 @@
 
-export const baseUrl = "http://localhost:7000/app-v1";
+export const baseUrl = "https://geomertry-2022-server.herokuapp.com/app-v1";
 

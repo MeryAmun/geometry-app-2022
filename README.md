@@ -18,7 +18,10 @@ run npm start to start project
 Server runs on Node js and Express, with Mongo Db Atlas as database
 
 # Get to server
-go to this repositotry https://github.com/MeryAmun/geometry-app-server.git
+Link to server https://geomertry-2022-server.herokuapp.com/app-v1/geometry/all
+
+
+link to server  repositotry https://github.com/MeryAmun/geometry-app-server.git
 this is the link to Mongo Db atlas database
 "mongodb+srv://mamba:mamba2021@transport.jlugw.mongodb.net/react-test?retryWrites=true&w=majority";
 in case there are difficulties accessing the server
