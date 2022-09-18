@@ -2,13 +2,13 @@ describe('get home page', () => {
   it('passes', () => {
     cy.visit('http://localhost:3000')
   })
-  it('passes', () => {
-    cy.visit('http://localhost:3000/geometry/all')
+  it('get API home page', () => {
+    cy.visit('https://geomertry-2022-server.herokuapp.com/app-v1')
   })
 
   context("API Test", () => {
-   it("Test GET Request", () => {
-   cy.request("http://localhost:3000/geometry/all")
+   it("Test GET Request by fetch API data", () => {
+   cy.request("https://geomertry-2022-server.herokuapp.com/app-v1/geometry/all")
     .then((response) => {
       expect(response.body).to.be.a('array')
       })
