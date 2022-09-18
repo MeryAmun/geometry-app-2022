@@ -11,7 +11,7 @@ Copy project url in the github repository and run git clone, or download zip and
 run npm install  in the root directory of this project inside you IDE
 
 # Start project
-run npm start to start procject
+run npm start to start project
 
 
 # About server
@@ -19,6 +19,9 @@ Server runs on Node js and Express, with Mongo Db Atlas as database
 
 # Get to server
 go to this repositotry https://github.com/MeryAmun/geometry-app-server.git
+this is the link to Mongo Db atlas database
+"mongodb+srv://mamba:mamba2021@transport.jlugw.mongodb.net/react-test?retryWrites=true&w=majority";
+in case there are difficulties accessing the server
 
 # Get files
 repeat the same procedures  above to get files

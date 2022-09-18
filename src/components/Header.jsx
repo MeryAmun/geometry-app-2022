@@ -1,32 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { baseUrl } from "./api/geometricFiguresApi";
-import Loader from "./GeometricFigures/Loader";
+import React, { useState } from "react";
 import "./header.css";
 import { Rectangle, Triangle, Square, Circle } from "./index";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState("rectangle");
-  const [figure, setFigure] = useState([]);
-
-  useEffect(() => {
-    const getGeoFigures = async () => {
-      const response = await fetch(`${baseUrl}/geometry/all`, {
-        method: "GET",
-        header: {
-          "Content-Types": "application/json",
-        },
-      }).then((response) => {
-        return response.json();
-      });
-      setFigure(response);
-      return response;
-    };
-    getGeoFigures();
-  }, []);
-
-  if (figure.length === 0) {
-    return <Loader />;
-  }
 
 
   return (
