@@ -21,10 +21,8 @@ Server runs on Node js and Express, with Mongo Db Atlas as database
 Link to server https://geomertry-2022-server.herokuapp.com/app-v1/geometry/all
 
 
-link to server  repositotry https://github.com/MeryAmun/geometry-app-server.git
-this is the link to Mongo Db atlas database
-"mongodb+srv://mamba:mamba2021@transport.jlugw.mongodb.net/react-test?retryWrites=true&w=majority";
-in case there are difficulties accessing the server
+link to server repositotry https://github.com/MeryAmun/geometry-app-server.git
+
 
 # Get files
 repeat the same procedures  above to get files
